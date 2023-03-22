@@ -1,4 +1,3 @@
-import { firebaseConfig } from "@/firebase_config";
 import { createApp } from "vue";
 import { createPinia } from "pinia";
 import { initializeApp } from "firebase/app";
@@ -16,6 +15,16 @@ app.use(createPinia());
 app.use(router);
 
 app.mount("#app");
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDpoKXDRXPjS2EzhenExlVHiSdRDK3qdV8",
+    authDomain: "onstage-quiz.firebaseapp.com",
+    projectId: "onstage-quiz",
+    storageBucket: "onstage-quiz.appspot.com",
+    messagingSenderId: "115919689976",
+    appId: "1:115919689976:web:d257a7d4feaceb5b8dc30d",
+    measurementId: "G-N9WVPH2GW3"
+};
 
 const firebaseApp = initializeApp(firebaseConfig);
 getAnalytics(firebaseApp);
