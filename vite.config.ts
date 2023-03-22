@@ -10,39 +10,39 @@ export default defineConfig({
         vue(),
         basicSsl(),
         VitePWA({
-      mode: "development",
-      base: "/",
-      srcDir: "src",
-      filename: "sw.ts",
-      includeAssets: ["/favicon.png"],
-      strategies: "injectManifest",
-      manifest: {
-        name: "Test Project",
-        short_name: "Test",
-        theme_color: "#ffffff",
-        start_url: "/",
-        display: "standalone",
-        background_color: "#ffffff",
-        icons: [
-          {
-            src: "icon-192.png",
-            sizes: "192x192",
-            type: "image/png",
-          },
-          {
-            src: "/icon-512.png",
-            sizes: "512x512",
-            type: "image/png",
-          },
-          {
-            src: "icon-512.png",
-            sizes: "512x512",
-            type: "image/png",
-            purpose: "any maskable",
-          },
-        ],
-      },
-    })
+            registerType: "autoUpdate",
+            injectRegister: "auto",
+            workbox: {
+                cleanupOutdatedCaches: true,
+                globPatterns: ["**/*.{js,css,html,ico,png,svg,json,vue,txt,woff2}"]
+            },
+            includeAssets: ["/favicon.png"],
+            manifest: {
+                name: "Test Project",
+                short_name: "Test",
+                theme_color: "#ffffff",
+                background_color: "#ffffff",
+                display: "standalone",
+                icons: [
+                    {
+                        src: "icon-192.png",
+                        sizes: "192x192",
+                        type: "image/png"
+                    },
+                    {
+                        src: "/icon-512.png",
+                        sizes: "512x512",
+                        type: "image/png"
+                    },
+                    {
+                        src: "icon-512.png",
+                        sizes: "512x512",
+                        type: "image/png",
+                        purpose: "any maskable"
+                    }
+                ]
+            }
+        })
     ],
     resolve: {
         alias: {

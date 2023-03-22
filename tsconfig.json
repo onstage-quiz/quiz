@@ -5,8 +5,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    },
-    "lib": ["ESNext", "DOM", "WebWorker"]
+    }
   },
 
   "references": [
