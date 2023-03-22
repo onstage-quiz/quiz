@@ -18,8 +18,8 @@ export default defineConfig({
             },
             includeAssets: ["/favicon.png"],
             manifest: {
-                name: "Test Project",
-                short_name: "Test",
+                name: "Onstage Quiz Client",
+                short_name: "Onstage Quiz",
                 theme_color: "#ffffff",
                 background_color: "#ffffff",
                 display: "standalone",
