@@ -5,6 +5,8 @@ export const useQuestionStore = defineStore("question", {
     state: (): quizObject => {
         return {
             started: false,
+            finished: false,
+            correctAmount: 0,
             questions: [
                 {
                     id: 0,
@@ -58,6 +60,25 @@ export const useQuestionStore = defineStore("question", {
                             correct: false
                         }
                     ]
+                },
+                {
+                    id: 3,
+                    question: "In welk cafe in Breda is Hardwell begonnen?",
+                    image: "",
+                    answers: [
+                        {
+                            text: "Suikerkist",
+                            correct: false
+                        },
+                        {
+                            text: "Cafe Janssen",
+                            correct: true
+                        },
+                        {
+                            text: "Dok19",
+                            correct: false
+                        }
+                    ]
                 }
             ],
             questionsHadIds: []
@@ -74,7 +95,7 @@ export const useQuestionStore = defineStore("question", {
                 this.getQuestion();
             }
 
-            this.questionsHadIds.push(question.id)
+            this.questionsHadIds.push(question.id);
 
             return question;
         }
