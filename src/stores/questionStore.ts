@@ -1,4 +1,5 @@
-import type { quizObject } from "@/utils/types";
+import type { questionType, quizObject } from "@/utils/types";
+import { collection, getDocs, getFirestore, query, where } from "firebase/firestore";
 import { defineStore } from "pinia";
 
 export const useQuestionStore = defineStore("question", {
@@ -7,97 +8,50 @@ export const useQuestionStore = defineStore("question", {
             started: false,
             finished: false,
             correctAmount: 0,
-            questions: [
-                {
-                    id: 0,
-                    question: "Hoeveel bezoekers had tomorrowland in 2022?",
-                    image: "https://cdn.uc.assets.prezly.com/9541fada-e788-4ea0-8d46-7adb3da2ba73/-/resize/1108x/-/quality/best/-/format/auto/",
-                    answers: [
-                        {
-                            text: "600.000",
-                            correct: true
-                        },
-                        {
-                            text: "400.000",
-                            correct: false
-                        },
-                        {
-                            text: "200.000",
-                            correct: false
-                        }
-                    ]
-                },
-                {
-                    id: 1,
-                    question: "In welk jaar is DJ Hardwell geboren?",
-                    image: "https://cdn.nos.nl/image/2022/03/28/846163/1024x576a.jpg",
-                    answers: [
-                        {
-                            text: "1987",
-                            correct: false
-                        },
-                        {
-                            text: "1988",
-                            correct: true
-                        },
-                        {
-                            text: "1989",
-                            correct: false
-                        }
-                    ]
-                },
-                {
-                    id: 2,
-                    question: "Hardwell heeft de soundtrack van Baron 1898 geremixt",
-                    image: "https://www.efteling.com/en/-/media/images/nieuw-park/park/attractions/baron-1898/1024x576-baron-1898-1.jpg",
-                    answers: [
-                        {
-                            text: "Waar",
-                            correct: true
-                        },
-                        {
-                            text: "Niet waar",
-                            correct: false
-                        }
-                    ]
-                },
-                {
-                    id: 3,
-                    question: "In welk cafe in Breda is Hardwell begonnen?",
-                    image: "",
-                    answers: [
-                        {
-                            text: "Suikerkist",
-                            correct: false
-                        },
-                        {
-                            text: "Cafe Janssen",
-                            correct: true
-                        },
-                        {
-                            text: "Dok19",
-                            correct: false
-                        }
-                    ]
-                }
-            ],
-            questionsHadIds: []
+            questions: [],
+            questionsHadIds: [-1]
         };
     },
     actions: {
         reset() {
-
+            this.started = false;
+            this.finished = false;
+            this.correctAmount = 0;
+            this.questionsHadIds = [];
         },
-        getQuestion() {
-            const question = this.questions[Math.floor(Math.random() * this.questions.length)];
+        async init() {
+            const db = getFirestore();
 
-            if (this.questionsHadIds.includes(question.id)) {
-                this.getQuestion();
-            }
+            const questionsArray: Array<questionType> = [];
+
+            const querySnapshot = await getDocs(collection(db, "questions"));
+            querySnapshot.forEach((doc) => {
+                questionsArray.push(<questionType>doc.data().question);
+            });
+
+            this.questions = questionsArray;
+
+            return questionsArray;
+        },
+        async getQuestion() {
+            const db = getFirestore();
+
+            const questionsArray: Array<questionType> = [];
+
+            const citiesRef = collection(db, "questions");
+
+            const q = query(citiesRef, where("id", "not-in", this.questionsHadIds));
+
+            const querySnapshot = await getDocs(q);
+            querySnapshot.forEach((doc) => {
+                questionsArray.push(<questionType>doc.data());
+            });
+
+            const question = questionsArray[Math.floor(Math.random() * questionsArray.length)];
 
             this.questionsHadIds.push(question.id);
 
-            return question;
+            return question.question;
         }
     }
 });
