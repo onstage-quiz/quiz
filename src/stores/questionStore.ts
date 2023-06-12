@@ -17,9 +17,11 @@ export const useQuestionStore = defineStore("question", {
             this.started = false;
             this.finished = false;
             this.correctAmount = 0;
-            this.questionsHadIds = [];
+            this.questionsHadIds = [-1];
         },
         async init() {
+            this.reset()
+
             const db = getFirestore();
 
             const questionsArray: Array<questionType> = [];
