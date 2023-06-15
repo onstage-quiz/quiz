@@ -132,7 +132,7 @@ async function addQuestion() {
         question: {
             id: newQuestionId,
             image: questionImage.value,
-            text: questionText.value,
+            question: questionText.value,
             answers: answers
         }
     });
