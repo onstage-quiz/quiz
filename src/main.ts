@@ -17,13 +17,12 @@ app.use(router);
 app.mount("#app");
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDpoKXDRXPjS2EzhenExlVHiSdRDK3qdV8",
-    authDomain: "onstage-quiz.firebaseapp.com",
-    projectId: "onstage-quiz",
-    storageBucket: "onstage-quiz.appspot.com",
-    messagingSenderId: "115919689976",
-    appId: "1:115919689976:web:d257a7d4feaceb5b8dc30d",
-    measurementId: "G-N9WVPH2GW3"
+    apiKey: "AIzaSyC1xrZm0kL-KJjAVbnhzB1QxsFLPNCXxmw",
+    authDomain: "onstage-quiz-1bdcb.firebaseapp.com",
+    projectId: "onstage-quiz-1bdcb",
+    storageBucket: "onstage-quiz-1bdcb.appspot.com",
+    messagingSenderId: "1065654723018",
+    appId: "1:1065654723018:web:5cdbf7f98d60e14c7f2f33"
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
