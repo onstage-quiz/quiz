@@ -17,4 +17,4 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_ONSTAGE_QUIZ }}'
           channelId: live
-          projectId: onstage-quiz
+          projectId: onstage-quiz-1bdcb
