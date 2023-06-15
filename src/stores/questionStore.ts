@@ -38,7 +38,7 @@ export const useQuestionStore = defineStore("question", {
         async getQuestion() {
             const db = getFirestore();
 
-            const questionsArray: Array<questionType> = [];
+            const questionsArray: Array<{id: 0, question: questionType}> = [];
 
             const citiesRef = collection(db, "questions");
 
@@ -46,14 +46,14 @@ export const useQuestionStore = defineStore("question", {
 
             const querySnapshot = await getDocs(q);
             querySnapshot.forEach((doc) => {
-                questionsArray.push(<questionType>doc.data());
+                questionsArray.push(<{id: 0, question: questionType}>doc.data());
             });
 
             const question = questionsArray[Math.floor(Math.random() * questionsArray.length)];
 
             this.questionsHadIds.push(question.id);
 
-            return question.text;
+            return question.question;
         }
     }
 });
