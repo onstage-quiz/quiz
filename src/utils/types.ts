@@ -8,7 +8,7 @@ export interface quizObject {
 
 export interface questionType {
     id: number,
-    question: string,
+    text: string,
     image: string,
     answers: Array<answerType>
 }

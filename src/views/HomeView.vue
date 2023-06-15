@@ -5,7 +5,7 @@
         <div class="flex flex-col gap-6" v-if="questionStore.started && !questionStore.finished">
             <div class="w-[50rem] h-[25rem] bg-white flex place-items-center justify-end flex-col gap-4 pb-5">
                 <img alt="image" :src="currentQuestion.image" class="h-auto max-h-72 object-contain w-96">
-                <h1 class="text-4xl font-bold font-[couture] text-center">{{ currentQuestion.question }}</h1>
+                <h1 class="text-4xl font-bold font-[couture] text-center">{{ currentQuestion.text }}</h1>
 
             </div>
 

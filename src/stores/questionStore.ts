@@ -53,7 +53,7 @@ export const useQuestionStore = defineStore("question", {
 
             this.questionsHadIds.push(question.id);
 
-            return question.question;
+            return question.text;
         }
     }
 });
